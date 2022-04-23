@@ -15,6 +15,10 @@ router.route('/create-offer')
     .then(house=>res.redirect('/houses-for-rent'))
 })
 
+router.get('/details/:id',(req,res)=>{
+      estateService.details(req,res)
+     .then(house=>res.render('details',{house}))
+})
 
 
 module.exports=router

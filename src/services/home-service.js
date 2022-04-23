@@ -32,6 +32,9 @@ function login(req,res){
 function last3(){
       return  Estate.find({}).lean()
           .then(all=>{
+              if(all.length <=3){
+                  return all
+              }
               return all.slice(all.length-3)
           })
 }
