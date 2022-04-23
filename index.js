@@ -2,9 +2,11 @@ const server=require('express')()
 const PORT=3000
 
 require('./src/configurations/database')();
+require('./src/configurations/express')(server)
 
-
-
+server.get('/',(req,res)=>{
+    res.render('home')
+})
 
 
 
