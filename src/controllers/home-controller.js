@@ -3,7 +3,8 @@ const homeService=require('../services/home-service');
 
 
 router.get('/',(req,res)=>{
-     res.render('home',)
+     homeService.last3()
+     .then(house=>res.render('home',{house}))
 })
 
 router.route('/register')

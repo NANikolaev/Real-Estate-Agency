@@ -13,10 +13,10 @@
     <h1>Top Houses</h1>
     <div class="houses">
 
-        {{#each houses}}
-        {{>house}}
+        {{#each house}}
+        {{>house-home}}
         {{/each}}
-        {{#unless houses}}
+        {{#unless house}}
         <div class="no-data-container">
             <p class="no-data">There are no housing offers found...</p>
         </div>

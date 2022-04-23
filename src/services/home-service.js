@@ -2,6 +2,7 @@ const User=require('../models/User');
 const secret=require('../configurations/secret');
 const jwt=require('jsonwebtoken');
 const bcrypt=require('bcrypt');
+const Estate=require('../models/Estate');
 
 function register(req,res){
    return User.create(req.body)
@@ -28,7 +29,15 @@ function login(req,res){
 
 }
 
+function last3(){
+      return  Estate.find({}).lean()
+          .then(all=>{
+              return all.slice(all.length-2)
+          })
+}
+
 module.exports={
     register,  
-    login
+    login,
+    last3
 }
