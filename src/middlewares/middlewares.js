@@ -11,6 +11,12 @@ function ifUser(req,res,next){
     next()
 }
 
+function ifError(req,res,next){
+    if(req.cookies['error']){
+        res.locals.error=req.cookies['error']
+    }
+}
+
 module.exports=(server)=>{
     server.use(ifUser)
 }
