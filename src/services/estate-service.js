@@ -33,9 +33,15 @@ function rent(req, res) {
         })
 }
 
+function removeHouse(req,res){
+      return Estate.findByIdAndDelete(req.params.id)
+}
+
 module.exports = {
     getAll,
     create,
     details,
-    rent
+    rent,
+    removeHouse,
+    
 }

@@ -24,5 +24,9 @@ router.get('/rent/:id',(req,res)=>{
     estateService.rent(req,res)
     .then(house=>res.redirect(`/details/${house._id}`))
 })
+router.get('/delete/:id',(req,res)=>{
+     estateService.removeHouse(req,res)
+     .then(house=>res.redirect('houses-for-rent'))
+})
 
 module.exports=router
