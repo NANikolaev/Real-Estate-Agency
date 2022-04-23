@@ -6,6 +6,5 @@ module.exports=(server)=>{
     server.use(express.urlencoded());
     server.engine('hbs',handlebars.create({extname:'hbs'}).engine)
     server.set('view engine','hbs')
-    server.set('views','./src/views');
-    
+    server.set('views','./src/views');   
 }
