@@ -32,7 +32,7 @@ function login(req,res){
 function last3(){
       return  Estate.find({}).lean()
           .then(all=>{
-              return all.slice(all.length-2)
+              return all.slice(all.length-3)
           })
 }
 
