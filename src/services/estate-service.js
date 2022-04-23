@@ -18,7 +18,7 @@ function details(req, res) {
                 house.isOwner = house.owner == req.user.id
                 house.notRent = house.owner != req.user.id && !isRented && house.pieces > 0
                 house.isRented = house.owner != req.user.id && isRented
-                house.isFull =  house.pieces == 0 && house.owner != req.user.id 
+                house.isFull = house.pieces == 0 && house.owner != req.user.id
             }
             return house
         })
@@ -33,8 +33,24 @@ function rent(req, res) {
         })
 }
 
-function removeHouse(req,res){
-      return Estate.findByIdAndDelete(req.params.id)
+function removeHouse(req, res) {
+    return Estate.findByIdAndDelete(req.params.id)
+}
+
+function getOne(req, res) {
+    return Estate.findById(req.params.id).lean()
+}
+
+function edit(req, res) {
+    let emptyFields = Array.from(Object.values(req.body)).includes('') == true
+    let isUrl = req.body.image.startsWith('http') == true
+            if (emptyFields) {
+                throw new Error('Missed Field/s')
+            }
+            if(!isUrl){
+                throw new Error('Invalid Url')
+            }
+            return Estate.findByIdAndUpdate(req.params.id,req.body)     
 }
 
 module.exports = {
@@ -43,5 +59,6 @@ module.exports = {
     details,
     rent,
     removeHouse,
-    
+    getOne,
+    edit
 }

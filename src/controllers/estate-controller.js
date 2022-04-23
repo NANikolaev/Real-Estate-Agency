@@ -20,6 +20,16 @@ router.get('/details/:id',(req,res)=>{
      .then(house=>res.render('details',{house}))
 })
 
+router.route('/edit/:id')
+.get((req,res)=>{
+     estateService.getOne(req,res)
+     .then(house=>{res.render('edit',{house})})
+})
+.post((req,res)=>{
+    estateService.edit(req,res)
+    .then(house=>{res.redirect(`/details/${house._id}`)})
+})
+
 router.get('/rent/:id',(req,res)=>{
     estateService.rent(req,res)
     .then(house=>res.redirect(`/details/${house._id}`))
