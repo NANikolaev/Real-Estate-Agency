@@ -11,12 +11,13 @@ router.route('/register')
 .get((req,res)=>{
     res.render('register')
 })
-.post((req,res)=>{
+.post((req,res,next)=>{
    homeService.register(req,res)
       .then(token=>{
           res.cookie('accessToken',token)
           res.redirect('/')
       })
+      .catch(err=>next(err))
 })
 
 router.route('/login')

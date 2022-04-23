@@ -4,7 +4,7 @@ const jwt=require('jsonwebtoken');
 const bcrypt=require('bcrypt');
 const Estate=require('../models/Estate');
 
-function register(req,res){
+function register(req,res,){
    return User.create(req.body)
           .then(user=>{
               let payload={
@@ -14,6 +14,7 @@ function register(req,res){
               let accessToken=jwt.sign(payload,secret,{expiresIn:'1d'})
               return accessToken
           })
+          
 }
 
 function login(req,res){
