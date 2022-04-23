@@ -16,16 +16,26 @@ function details(req, res) {
             if (req.user) {
                 let isRented = house.rentedUsers.find(u => u._id == req.user.id)
                 house.isOwner = house.owner == req.user.id
-                house.notRent = house.owner != req.user.id && !isRented && house.pieces > house.rentedUsers.length
+                house.notRent = house.owner != req.user.id && !isRented && house.pieces > 0
                 house.isRented = house.owner != req.user.id && isRented
-                house.isFull = house.rentedUsers.length == house.pieces
+                house.isFull =  house.pieces == 0 && house.owner != req.user.id 
             }
             return house
+        })
+}
+
+function rent(req, res) {
+    return Estate.findById(req.params.id).lean()
+        .then(house => {
+            house.rentedUsers.push(req.user.id)
+            house.pieces = house.pieces - 1
+            return Estate.findByIdAndUpdate(req.params.id, house)
         })
 }
 
 module.exports = {
     getAll,
     create,
-    details
+    details,
+    rent
 }

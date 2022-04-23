@@ -20,5 +20,9 @@ router.get('/details/:id',(req,res)=>{
      .then(house=>res.render('details',{house}))
 })
 
+router.get('/rent/:id',(req,res)=>{
+    estateService.rent(req,res)
+    .then(house=>res.redirect(`/details/${house._id}`))
+})
 
 module.exports=router

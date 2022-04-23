@@ -36,7 +36,7 @@
                 <!-- logged in user with available pieces-->
 
                 {{#if house.notRent}}
-                <a href="/rent/" class="rentHome">Rent a home, available {{house.pieces}} housing</a>
+                <a href="/rent/{{house._id}}" class="rentHome">Rent a home, available {{house.pieces}} housing</a>
                 {{/if}}
 
                 {{#if house.isRented}}
