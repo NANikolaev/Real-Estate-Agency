@@ -1,0 +1,28 @@
+{
+  "name": "real-estate-agency",
+  "version": "1.0.0",
+  "description": "Exercise for exam.",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NANikolaev/Real-Estate-Agency.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NANikolaev/Real-Estate-Agency/issues"
+  },
+  "homepage": "https://github.com/NANikolaev/Real-Estate-Agency#readme",
+  "dependencies": {
+    "express": "^4.17.3",
+    "mongoose": "^6.3.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
