@@ -14,9 +14,15 @@
 
         <!-- In case of error, you should display div with class "errorContainer" -->
         <!-- You can choose to display the first error or all of them (error message/s in your opinion) -->
-           {{#each error}}
-            {{>error}}
-            {{/each}}
+        {{#if error}}
+        <div>
+            <div class="errorContainer">
+                {{#each error}}
+                <p>{{this}}</p>
+                {{/each}}
+            </div>
+        </div>
+        {{/if}}
 
         <nav>
             <a href="/">Home</a>

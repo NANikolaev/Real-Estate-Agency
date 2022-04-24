@@ -1,41 +1,42 @@
-const router=require('express').Router();
-const homeService=require('../services/home-service');
+const router = require('express').Router();
+const homeService = require('../services/home-service');
 
 
-router.get('/',(req,res)=>{
-     homeService.last3()
-     .then(house=>res.render('home',{house}))
+router.get('/', (req, res) => {
+    homeService.last3()
+        .then(house => res.render('home', { house }))
 })
 
 router.route('/register')
-.get((req,res)=>{
-    res.render('register')
-})
-.post((req,res,next)=>{
-   homeService.register(req,res)
-      .then(token=>{
-          res.cookie('accessToken',token)
-          res.redirect('/')
-      })
-      .catch(err=>next(err))
-})
+    .get((req, res) => {
+        res.render('register')
+    })
+    .post((req, res, next) => {
+        homeService.register(req, res)
+            .then(token => {
+                res.cookie('accessToken', token)
+                res.redirect('/')
+            })
+            .catch(err => next(err))
+    })
 
 router.route('/login')
-.get((req,res)=>{
-    res.render('login')
-})
-.post((req,res)=>{
-    homeService.login(req,res)
-    .then(token=>{
-        res.cookie('accessToken',token)
-        res.redirect('/')
+    .get((req, res) => {
+        res.render('login')
     })
-    
-})
+    .post((req, res, next) => {
+        homeService.login(req, res)
+            .then(token => {
+                res.cookie('accessToken', token)
+                res.redirect('/')
+            })
+            .catch(err => next(err))
 
-router.get('/logout',(req,res)=>{
+    })
+
+router.get('/logout', (req, res) => {
     res.clearCookie('accessToken')
     res.redirect('/')
 })
 
-module.exports=router
+module.exports = router

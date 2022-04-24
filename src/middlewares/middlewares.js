@@ -15,8 +15,10 @@ function ifError(req,res,next){
     if(req.cookies['error']){
         res.locals.error=req.cookies['error']
     }
+    next()
 }
 
 module.exports=(server)=>{
     server.use(ifUser)
+    server.use(ifError)
 }
