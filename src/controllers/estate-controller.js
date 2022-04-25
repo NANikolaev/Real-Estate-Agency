@@ -10,9 +10,10 @@ router.route('/create-offer')
 .get((req,res)=>{
     res.render('create')
 })
-.post((req,res)=>{
+.post((req,res,next)=>{
     estateService.create(req,res)
     .then(house=>res.redirect('/houses-for-rent'))
+    .catch(err=>next(err))
 })
 
 router.get('/details/:id',(req,res)=>{
