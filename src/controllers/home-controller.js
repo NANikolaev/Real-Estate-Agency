@@ -39,4 +39,14 @@ router.get('/logout', (req, res) => {
     res.redirect('/')
 })
 
+router.route('/search')
+.get((req,res)=>{
+    res.render('search')
+})
+.post((req,res)=>{
+    homeService.search(req,res)
+    .then(match=>res.render('search',{match}))
+})
+
+
 module.exports = router

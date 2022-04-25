@@ -48,8 +48,18 @@ function last3() {
         })
 }
 
+function search(req,res){
+    let search=req.body.type
+   return Estate.find({type:search}).lean()
+          .then(arr=>{
+              res.locals.search=true
+            return arr
+          })
+}
+
 module.exports = {
     register,
     login,
-    last3
+    last3,
+    search
 }
