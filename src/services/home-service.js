@@ -25,6 +25,8 @@ function login(req, res) {
         .then(user => {
             if (!req.body.username || !req.body.password) { throw new Error('Missed Fileds') }
             if (!user) { throw new Error("Invalid Username") }
+            let validUser = bcrypt.compareSync(req.body.password, user.password)
+            if (!validUser) { throw new Error("Invalid Password") }
 
             let payload = {
                 username: user.username,
