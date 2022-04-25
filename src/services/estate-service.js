@@ -5,7 +5,7 @@ function getAll(req, res) {
 }
 
 function create(req, res) {
-    req.body.owner = req.user.id
+    req.body.owner = req.user.id;
     return Estate.create(req.body)
 }
 
