@@ -18,6 +18,7 @@ function ifError(req,res,next){
     next()
 }
 
+
 module.exports=(server)=>{
     server.use(ifUser)
     server.use(ifError)

@@ -1,5 +1,6 @@
 const router=require('express').Router();
 const estateService=require('../services/estate-service');
+const url=require('url');
 
 router.get('/houses-for-rent',(req,res)=>{
       estateService.getAll(req,res)
@@ -38,6 +39,14 @@ router.get('/rent/:id',(req,res)=>{
 router.get('/delete/:id',(req,res)=>{
      estateService.removeHouse(req,res)
      .then(house=>res.redirect('houses-for-rent'))
+})
+
+router.get('/Error-404',(req,res)=>{
+    res.status('404')
+    res.render('404')
+})
+router.all('*',(req,res)=>{
+    res.redirect('/Error-404')
 })
 
 module.exports=router
